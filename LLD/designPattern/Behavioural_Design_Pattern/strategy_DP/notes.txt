@@ -1,0 +1,20 @@
+Strategy pattern
+Definition
+The Strategy Pattern allows you to define a family of algorithms, put each one into its own class, and make them 
+interchangeable at runtime.
+In simple words:
+Instead of writing lots of if-else statements, we move each behavior into its own class and choose which one to use at runtime.
+
+Our Problem
+We have a payment system.
+A customer can pay using (so many option/Strategy)
+
+Credit Card
+PayPal
+UPI
+Bitcoin (future)
+
+Motivation
+Let's consider a simple payment system where users can pay using different methods like credit cards or PayPal. Without the 
+Strategy Pattern, you might use if-else conditions to handle the different payment methods, leading to less maintainable and
+ flexible code.

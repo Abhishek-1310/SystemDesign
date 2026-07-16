@@ -1,0 +1,41 @@
+Builder Pattern
+Definition
+
+Builder Pattern separates the construction of a complex object from its representation, allowing you to build the object step by step.
+Or simply:
+Instead of passing many parameters to a constructor, build the object one property at a time.
+
+Why do we need it?
+Suppose you're creating a User.
+
+Some fields are required:
+name
+email
+Some are optional:
+age
+country
+profileImage
+
+Without Builder, the constructor becomes huge. everything we have to add
+
+question:- Builder Design Pattern
+
+When an object requires many parameters, especially optional ones, the constructor can become hard to use or maintain. This issue can lead to:
+1. Long constructor parameter lists.
+2. Difficulty in understanding which values are optional or required.
+3. Lack of flexibility when it comes to setting only some values.
+For example, constructing an object with multiple optional parameters without the Builder pattern can look like this
+
+
+Advantages
+Eliminates long constructors.
+Makes code easy to read.
+Allows optional parameters naturally.
+Supports method chaining.
+Easy to extend by adding new setter methods.
+Reduces mistakes caused by parameter order.
+
+Disadvantages
+Requires additional Builder class.
+More code for simple objects.
+Overkill if an object has only a few fields.

@@ -1,0 +1,35 @@
+Question:- In software engineering, a common real-world example of the Facade Pattern is an API Gateway in a microservices 
+architecture.
+Problem Without Facade
+In a microservices architecture, each microservice can have its own API for specific business logic, such as user management, 
+order processing, and inventory. If the client needs to interact with these microservices, it would need to directly communicate
+ with all the individual services. This would increase the complexity of the client code, tightly couple the client to all the
+  microservices, and expose the inner workings of the system.
+
+Hide complexity behind one simple interface.
+Facade Pattern
+Definition:-Facade Pattern provides a simplified, unified interface to a complex subsystem.
+Or simply:
+One class acts as a single entry point to multiple complex classes.
+
+
+Why do we need it?
+Imagine you're building an e-commerce application using Microservices.
+You have separate services:
+User Service
+Order Service
+Inventory Service
+Payment Service
+Notification Service
+Without a Facade, the client has to call each service individually.
+
+Advantages
+Hides subsystem complexity.
+Reduces coupling between client and subsystem.
+Makes client code cleaner.
+Easier to maintain.
+Changes inside the subsystem rarely affect the client.
+Disadvantages
+
+The Facade can become a "God Class" if it handles too many responsibilities.
+It may hide useful subsystem features that advanced clients need.

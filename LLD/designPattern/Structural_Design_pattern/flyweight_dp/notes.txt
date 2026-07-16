@@ -1,0 +1,87 @@
+mostlt memory managment
+question:- Flyweight Pattern Motivation
+
+In game development, especially in scenarios like shooting games where numerous identical bullets are fired, memory and 
+performance can quickly become an issue if each bullet object stores redundant data. Using the Flyweight Pattern, we can 
+reduce memory overhead by sharing intrinsic properties of bullets (like appearance) while maintaining unique extrinsic properties
+ (like position and velocity).
+
+ Don't duplicate data that can be shared.
+
+Flyweight Pattern
+Definition
+Flyweight Pattern minimizes memory usage by sharing common (intrinsic) state between multiple objects while keeping unique 
+(extrinsic) state separate.
+Or simply:
+Share common data instead of storing duplicate copies in every object.
+
+
+Why do we need it?
+Imagine you're building a shooting game.
+Every bullet has:
+
+Common properties:
+
+Image
+Color
+Width
+Height
+
+Unique properties:
+
+x position
+y position
+Speed
+Direction
+
+Suppose: 10,000 bullets Without Flyweight:
+
+Every bullet stores:
+Image
+Color
+Width
+Height
+x
+y
+Speed
+Direction
+
+You're storing the same image and appearance 10,000 times.
+Huge waste of memory.
+Instead, Store the common properties once.
+
+Each bullet only stores:
+x
+y
+Speed
+Direction
+
+The shared appearance is reused.
+
+
+Intrinsic vs Extrinsic State
+
+This is the most important concept.
+Intrinsic State (Shared)
+Data that never changes and can be shared.
+For bullets:
+Image, Color, Width , Height
+
+Every red bullet looks the same.
+
+Extrinsic State (Unique)
+
+Data that changes for every object.
+x position y position Speed Direction
+Every bullet has a different location.
+
+Advantages
+Greatly reduces memory usage.
+Improves performance when creating many similar objects.
+Eliminates duplicate data.
+Centralizes shared state.
+
+Disadvantages
+More complex design.
+Requires separating intrinsic and extrinsic state correctly.
+Not useful if objects don't share much data.

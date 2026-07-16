@@ -1,0 +1,87 @@
+the command pattern turns a request(an action) into an object.
+simple
+instead of directly cailing a method, we wrap amethod call inside a coommand object.
+
+Q) Imagine you're developing a basic text editor with buttons for bold, italic, and underline text formatting.
+
+Without the Command Pattern, the buttons directly interact with the TextEditor class, and you'd end up hardcoding behavior
+ into the Ul classes, making them tightly coupled.
+text editor = have buttons :- bold italic underline
+
+The customer doesn't cook.
+The customer tells the waiter:
+
+"Bring me a Pizza."
+
+The waiter writes the order on a ticket.
+That ticket is the Command.
+The chef later executes it.
+
+Notice
+
+Customer doesn't know
+who the chef is
+how pizza is cooked
+The waiter doesn't know how to cook either.
+
+Everyone has one responsibility.
+
+Structure:
+Command: Interface for executing operations.
+Invoker: Sends the command.
+Receiver: Performs the operation.
+
+                    +------------------+
+                    |     Command      |
+                    +------------------+
+                    | + execute()      |
+                    +------------------+
+                             ▲
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+          ▼                  ▼                  ▼
++----------------+ +----------------+ +-------------------+
+| BoldCommand    | | ItalicCommand  | | UnderlineCommand |
++----------------+ +----------------+ +-------------------+
+| - editor       | | - editor       | | - editor         |
++----------------+ +----------------+ +-------------------+
+| + execute()    | | + execute()    | | + execute()      |
++----------------+ +----------------+ +-------------------+
+          │                  │                  │
+          └──────────────┬───┴──────────────────┘
+                         │
+                         ▼
+                +------------------+
+                |    TextEditor    |
+                +------------------+
+                | + bold()         |
+                | + italic()       |
+                | + underline()    |
+                +------------------+
+
+                +------------------+
+                |      Button      |
+                +------------------+
+                | - command        |
+                +------------------+
+                | + click()        |
+                +------------------+
+                         │
+                         ▼
+                  command.execute()
+
+Decoupling of Invoker and Receiver: The button (invoker) doesn't know the
+
+details of the TextEditor (receiver), making the system more flexible and reusable.
+
+Command History and Undo: Commands can be logged for undo/redo
+
+functionality.
+
+Task Queuing: Commands can be stored in a queue and executed later, making it useful for task scheduling.
+
+Extensibility: New commands can be added easily without modifying existing code. For example, adding a ChangeColorCommand only requires creating a new command class.
+ Gui application 
+Task scheduling
+ Undo redo functionality 
+Macro recording

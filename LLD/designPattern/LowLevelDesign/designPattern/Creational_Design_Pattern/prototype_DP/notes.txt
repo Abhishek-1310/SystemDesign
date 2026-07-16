@@ -1,0 +1,66 @@
+Prototype Pattern
+Definition
+Prototype Pattern creates new objects by cloning an existing object instead of creating them from scratch.
+Or simply:
+Copy an existing object rather than building a new one.
+
+Why do we need it?
+Suppose you're building a board game.
+A board contains:
+
+Size
+Pieces
+Players
+Scores
+Game State
+
+Creating a new board from scratch every time may be expensive.
+const board = new Board(...lots of data...);
+Now imagine saving checkpoints.
+
+Questions:- Consider a board game where you need to save the current state of the game at various checkpoints. Instead of 
+manually creating new board objects and copying all the pieces or their states (which could be costly if the board is large 
+and has many game pieces), we can use the Prototype Pattern to clone the board.
+We will use the prototype pattern allows us to make a copy of the current board, including all its pieces and their states, 
+without the need for deeply recreating each part of the board.
+
+
+Solution - Prototype Pattern
+
+The Prototype Pattern can be extremely useful in a board game when you want to save the current state of the game (including the
+ board layout and the position of pieces) for undo/redo functionality, checkpoints, or simply making a copy of the board for a new player.
+Each piece or game element can provide its own clone method, allowing the entire board to be easily cloned with all its current state.
+By using the Prototype pattern, we decouple the complexity of cloning the board from the client, ensuring that each object knows how to 
+clone itself, making the system flexible and easier to maintain.
+
+
+Checkpoint 1
+Checkpoint 2
+Checkpoint 3
+Checkpoint 4
+
+If we recreate the entire board every time:
+Expensive
+Slow
+Duplicate initialization logic
+
+Advantages
+Faster than creating complex objects repeatedly.
+Avoids expensive initialization.
+Reduces duplicate code.
+Easy creation of object snapshots.
+Useful for checkpoint systems and templates.
+
+Disadvantages
+Deep cloning can become tricky.
+Circular references require special handling.
+Improper cloning can cause shared-state bugs.
+Complex objects may require custom clone logic.
+
+Shallow Copy: Creates a new object but does not clone the objects that the original obiect refers to.
+Deep Copy: Clones the original object and all the objects it refers to (nested objects)
+
+Example:
+:
+Shallow Copy: Cloning an object with references to other objects (only the outer object is copied).
+Deep Copy: Cloning the entire object graph, including any objects the original refers to.

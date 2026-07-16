@@ -1,0 +1,46 @@
+Structural Design Patterns
+Definition
+Structural Design Patterns deal with how classes and objects are combined to form larger structures while keeping the system 
+flexible, reusable, and maintainable.
+Or simply:
+They focus on how different classes and objects are connected together.
+
+
+Why do we need them?
+Imagine you have different classes in your application:
+Payment
+Notification
+Database
+Logger
+UI Components
+
+As the application grows:
+
+Classes become tightly coupled.
+Existing classes may have incompatible interfaces.
+Adding new features without changing old code becomes difficult.
+Complex subsystems become hard to use.
+
+Structural patterns solve these problems by organizing and connecting objects in better ways.
+
+Overview
+Structural patterns are design patterns that deal with how objects and classes are composed to form larger structures, 
+making the system more flexible and easy to understand.
+They simplify the design of complex systems by creating relationships between objects.
+They help in organizing class hierarchies and allow for easy modification and extension.
+
+Adapter says: "I will make these two classes compatible."
+Decorator says: "I will add new features to this object."
+Proxy says: "I will decide when and how you can access this object."
+
+Adapter says: "I'll make incompatible classes work together."
+Decorator says: "I'll add extra behavior."
+Proxy says: "I'll control access."
+Composite says: "I'll organize objects into a tree."
+Facade says: "I'll hide all this complexity behind one simple method."
+
+Factory → Creates objects.
+Prototype → Copies objects.
+Decorator → Enhances objects.
+Proxy → Controls access to objects.
+Flyweight → Shares common data so thousands of objects don't store the same information repeatedly.

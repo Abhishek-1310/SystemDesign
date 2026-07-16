@@ -1,0 +1,66 @@
+Abstract Factory Pattern
+Definition
+Abstract Factory Pattern provides an interface for creating families of related objects without specifying their concrete classes.
+Or simply:
+A factory that creates multiple related objects together.
+
+
+
+Question:- Abstract Factory Pattern
+Consider an application that needs to support multiple Ul themes (e.g., Windows, macOS). Each theme has its own set of Ul 
+components such as buttons, scrollbars, and windows. The challenge is to create an architecture that allows switching between 
+these themes without changing the client code that uses the Ul components.
+Without the Abstract Factory Pattern, the client code would be tightly coupled with the concrete implementations of buttons, 
+scrollbars, etc., and switching between themes would require modifying the client code.
+
+
+Real-Life Analogy
+Imagine you're ordering a McDonald's Meal. You don't order every item separately. Instead, you choose:
+
+Veg Meal
+You automatically get
+Veg Burger
+Fries
+Coke
+
+Or
+
+Chicken Meal
+You automatically get
+Chicken Burger
+Fries
+Coke
+
+The meal is the Abstract Factory.
+Each meal creates a family of related products.
+
+
+
+Advantages
+Ensures related objects are compatible.
+Keeps UI themes consistent.
+Hides object creation logic.
+Makes switching entire product families easy.
+Reduces coupling between client and concrete classes.
+
+Disadvantages
+More classes and interfaces are required.
+Adding a new product type (e.g., createTextBox()) requires updating every concrete factory.
+Can feel like overkill for small applications.
+
+Problems in Code
+Tight coupling: The client code is tightly coupled to specific implementations of UI components (WindowsButton, WindowsScrollBar).
+2 Hard to extend: If we want to add support for macOS UI components, we would need to modify the client code to create instances of 
+MacOSButton and MacOSScrollBar
+
+: Abstract Factory Pattern
+Problem It Solves: Provides an interface for creating families of related objects without specifying their concrete classes.
+Structure:
+:
+Abstract Factory: Interface for creating abstract products.
+Concrete Factory: Implements the abstract factory and creates concrete products.
+Using the Abstract Factory Pattern, you create interfaces for each product (e.g., Button, ScrollBar, Window) and provide-a 
+family of concrete implementations for each theme (e.g., Windows Button, MacOSButton, etc.). The Abstract Factory provides a
+ way to create a suite of related objects without knowing the exact type of objects that will be created
+
+ 

@@ -1,0 +1,86 @@
+State Pattern is the pattern most commonly confused with Strategy Pattern.
+So while learning it, I'll continuously compare it with Strategy.
+State Pattern - Simple Definition
+The State Pattern allows an object to change its behavior when its internal state changes.
+Simple words:
+The object's behavior changes automatically based on its current state.
+> same traffic light behaves differently depending on its current state.
+when red vechicle stop yellow start moving green running
+The current state decides the behavior.
+
+
+Q) You are tasked with building a DirectionService class for a navigation app. This class calculates the estimated time of arrival
+ (ETA) and provides directions between two points. The ETA and direction differ based on the mode of transportation, which can be one of the following:
+Walking
+Cycling
+Car
+Train
+
+
+                  +----------------------+
+                  |     TravelMode       |
+                  +----------------------+
+                  | + getETA()           |
+                  | + getDirection()     |
+                  +----------------------+
+                            ▲
+        ┌───────────────────┼────────────────────┐
+        │                   │                    │
+        ▼                   ▼                    ▼
++---------------+   +---------------+   +---------------+
+|   Walking     |   |      Car      |   |     Train     |
++---------------+   +---------------+   +---------------+
+| + getETA()    |   | + getETA()    |   | + getETA()    |
+| + getDirection()| | + getDirection()| | + getDirection()|
++---------------+   +---------------+   +---------------+
+
+                 uses
+                   ▲
+                   │
+        +--------------------------+
+        |    DirectionService      |
+        +--------------------------+
+        | - mode: TravelMode       |
+        +--------------------------+
+        | + setMode()              |
+        | + getETA()               |
+        | + getDirection()         |
+        +--------------------------+
+Strategy                                                      State
+Client chooses the algorithm.                                 The object's current state determines the behavior.
+Goal: Change the algorithm.                                   Goal: Change behavior based on state.
+Example: Pay by UPI or Credit Card.                           Example: Logged In, Logged Out, Playing, Paused, Walking, Driving.
+The strategy is usually selected intentionally by the client. The state may change automatically as the object's lifecycle changes.
+
+Strategy = "Which way do you want to do this?" (user chooses).
+State = "What state am I currently in?" (object behaves accordingly).
+
+
+Problems with our Code
+↓
+Tight Coupling and Complex Conditional Logic:
+The DirectionService likely uses conditional statements (if-else or switch-case) based on transportation mode enums to determine
+ how to calculate ETA and provide directions.
+As the number of transportation modes increases, the conditional logic becomes more complex and harder to maintain.
+Violation of the Open/Closed Principle:
+Adding new transportation modes (e.g., Airplane, Boat) requires modifying the existing DirectionService class, which goes against 
+the Open/Closed Principle (classes should be open for extension but closed for modification).
+
+
+code duplication code mantainbility :- saclibilty issue
+
+solve with state pattern
+
+State Pattern: Structure
+
+Structure:
+Context: Holds a reference to the current state.
+State: Interface for state-specific behavior.
+Concrete State: Specific implementations of the State interface that represent a particular state of the context object.
+
+UI Navigation
+Scenario: A mobile app Ul where the navigation behavior changes based on whether the user is logged in or not.
+Example:
+:
+States: LoggedinState, LoggedOutState.
+Context: The app's navigation system switches between these states.

@@ -1,0 +1,53 @@
+Factory Pattern
+Definition
+
+Factory Pattern provides a single place (factory) to create objects without exposing the object creation logic to the client.
+Or simply:
+Instead of creating objects using new everywhere, ask a factory to create the object for you.
+
+
+Consider an example of a transportation service app where users can request different types of transport vehicles
+ (e.g., Car, Bike, Bus). You might initially create separate classes for each type, and create instances like this:
+Car car = new Car();
+Bike bike = new Bike();
+But as the system evolves, managing object creation directly like this can become complex, especially when adding new types 
+of vehicles.
+
+// so make one class which create object and give 
+
+: Problems:
+1. The client code (i.e., TransportService) is tightly coupled to concrete classes (Car, Bike, Bus).
+2. Adding new transport types requires modifying client code.
+
+Open/close. voilet
+ Factory Design Pattern
+↓
+The Factory Pattern helps centralize the creation logic and delegates the responsibility of creating objects to factory classes, which decide the specific class to instantiate. This allows the code to adhere to the Open/Closed Principle by letting new types of vehicles be added without modifying the existing code.
+Factory Design Pattern
+
+Factory Class: The TransportFactory class contains the logic to create different types of transport based on the input string.
+ This abstracts the creation logic and makes it easier to add or change transport types.
+2. Decoupling: The TransportService class (client) no longer needs to know the details of how Car, Bike, or Bus are created. It simply calls the factory method.
+
+3. Flexibility: Adding a new transport type (e.g., Truck) only requires modifying the factory, not the client code.
+
+Real World Use Cases
+GUI Frameworks: When the type of button or widget to be created is determined at runtime based on the platform (e.g., Windows, macOS, Linux).
+Database Connectivity: When choosing different types of databases (e.g., SQL, NoSQL) based on configuration.
+Document Conversion Tools: Where the type of file (e.g., PDF, Word, HTML) to be created depends on user input or settings.
+The Factory Design Pattern is a fundamental tool to reduce coupling and centralize object creation logic, especially in systems that need to support multiple types of objects.
+
+
+Advantages
+Centralizes object creation.
+Reduces duplicate code.
+Loosely couples the client to concrete classes.
+Easier to maintain and extend.
+Hides object creation complexity.
+Makes testing easier (you can swap implementations more easily).
+
+
+Disadvantages
+Adds an extra class (the factory).
+The factory may grow large if it handles too many types.
+Adding a new product usually requires modifying the factory (basic Factory Pattern), so it's not perfectly open for extension.

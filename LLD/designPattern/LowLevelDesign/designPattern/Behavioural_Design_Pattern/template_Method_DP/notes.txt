@@ -1,0 +1,68 @@
+Template Method defines the skeleton (fixed sequence) of an algorithm in a base class while allowing subclasses to customize specific steps.
+Simple words:
+The overall process is fixed, but some individual steps can change.
+
+
+q)  Motivation Problem
+
+Consider a scenario where you have different data parsers (e.g., CSV, XML, and JSON). Each parser follows the same steps: open
+ file, parse data, and close file.
+Without the Template Method Pattern, you might end up duplicating the common steps in each parser class.
+
+
+Real-Life Analogy
+Making tea and coffee.
+Both follow the same process:
+1. Boil water
+2. Add ingredient
+3. Pour into cup
+4. Serve
+The recipe (algorithm) is the same.
+Only one step changes.
+Add tea or coffee powder
+
+That's Template Method.
+
+:- 
+                +----------------------+
+                |     DataParser       |
+                +----------------------+
+                | + parse()            |  <-- Template Method
+                | + openFile()         |
+                | + closeFile()        |
+                | + parseData()        |  <-- Abstract
+                +----------------------+
+                          ▲
+          ┌───────────────┼───────────────┐
+          │               │               │
+          ▼               ▼               ▼
++----------------+ +----------------+ +----------------+
+|   CSVParser    | |   XMLParser    | |  JSONParser    |
++----------------+ +----------------+ +----------------+
+| + parseData()  | | + parseData()  | | + parseData()  |
++----------------+ +----------------+ +----------------+
+
+ Why is it called "Template Method"?
+
+Because the parent class provides a template (fixed recipe) for the algorithm. Child classes cannot change the order of the
+ steps—they only fill in the customizable parts.
+
+ 
+Strategy                     Template Method
+Uses composition ("has-a").  Uses inheritance ("is-a").
+
+problem solve with this pattern is remove code dupliaction and don't reapte yourself
+
+¹Template Method Pattern
+Problem: Different parts of an algorithm may need to vary in subclasses, but the overall structure should remain consistent.
+Solution: The Template Method Pattern defines the skeleton of an algorithm in a base class and lets subclasses override specific steps.
+
+Structure:
+Abstract Class: Defines the algorithm skeleton.
+Concrete Subclasses: Override specific steps of the algorithm.
+
+A default implementation that subclasses can optionally override.
+
+A "hook" is a method in the base class with a default or empty implementation that subclasses can override to extend or 
+modify behaviour. The Template Method pattern adheres to the Open/Closed Principle because the algorithm's structure is
+ defined in the base class, while subclasses can extend or modify specific steps without changing the overall template.

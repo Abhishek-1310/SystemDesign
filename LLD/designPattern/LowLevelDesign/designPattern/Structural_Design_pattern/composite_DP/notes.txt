@@ -1,0 +1,45 @@
+Composite Pattern
+Definition
+Composite Pattern allows you to treat individual objects and groups of objects uniformly by organizing them into a tree structure.
+Or simply:
+Treat a single object and a group of objects the same way.
+
+Question:- Composite Pattern
+Problem: When building systems like a file directory, which consist of both individual items (files) and groups of items
+(directories), managing these with standard object hierarchies can become complex.
+Solution: The Composite Pattern allows you to treat individual objects and compositions of objects uniformly by representing 
+part-whole hierarchies.
+
+Why do we need it?
+Imagine you're building a File System.
+It contains: Files.  Directories
+A directory can contain: Files,  Other Directories
+Example:
+Root
+├── File1
+├── File2
+├── Documents
+│   ├── Resume.pdf
+│   └── Notes.txt
+└── Images
+    ├── Photo1.jpg
+    └── Photo2.jpg
+
+You want to perform the same operation:
+item.show(); Whether item is:
+A File ✅ A Directory ✅
+
+Without worrying about which one it is.
+This is exactly what the Composite Pattern provides.
+
+Advantages
+Treats individual and grouped objects uniformly.
+Simplifies client code.
+Makes recursive structures easy to implement.
+Supports nested hierarchies naturally.
+Easy to add new component types.
+
+Disadvantages
+Can make the design too generic.
+Sometimes it's difficult to restrict what can be added to a composite.
+May violate the Interface Segregation Principle if leaf objects are forced to implement operations they don't support (like add()).

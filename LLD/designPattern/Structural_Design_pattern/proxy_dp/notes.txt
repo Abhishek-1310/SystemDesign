@@ -1,0 +1,46 @@
+ Proxy Pattern
+Problem: Sometimes, direct access to an object might not be desirable due to reasons such as security, resource optimization, or controlled access.
+Solution: The Proxy Pattern provides a surrogate or placeholder for another object to control access to it.
+it's used in lazy loading, caching, access control, logging, and security.
+Proxy Pattern Motivation
+
+Question :- Imagine a system where we want to load a heavy object like a large image from disk. It might take time to load the image, and
+ we don't want to load it until it's necessary. Without using a proxy, the application would load the image every time it's 
+ needed, even if not displayed, wasting resources.
+
+Proxy Pattern
+Definition
+Proxy Pattern provides a placeholder or surrogate object that controls access to another (real) object.
+Or simply:
+A Proxy sits between the client and the real object to control when and how the real object is accessed.
+
+Why do we need it?
+Imagine your application displays product images.
+Each image is 100 MB.
+Loading every image immediately would:
+
+1) Waste memory 2) Increase application startup time 3) Slow down the application
+Most users won't even scroll to every image.
+Instead, Load the image only when it's actually needed.
+This is called Lazy Loading, one of the most common uses of the Proxy Pattern.
+
+
+Advantages
+Supports lazy loading (creates expensive objects only when needed).
+Can cache results to avoid repeated work.
+Controls access (authentication, authorization).
+Can add logging, monitoring, or rate limiting.
+Keeps the client unaware of these extra responsibilities.
+
+Disadvantages
+Adds an extra layer of indirection.
+More classes to maintain.
+Slight performance overhead due to the proxy itself.
+
+Proxy Pattern Benefits
+1. Lazy Initialization: Objects are loaded only when necessary, saving memory and CPU cycles.
+2. Access Control: You can control access to the real object (e.g., based on user permissions).
+3. Additional Behavior: Proxies can add additional functionalities like logging,
+access control, or caching without modifying the real object.
+4. Separation of Concerns: The real object only deals with its core
+responsibilities, while the proxy handles ancillary operations like initialization or security.

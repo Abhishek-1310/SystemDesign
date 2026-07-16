@@ -1,0 +1,156 @@
+Category	Purpose	                        Main Question it Answers
+
+Creational	How to create objects	        "How should I create this object?"
+Structural	How to organize objects/classes	"How should these objects work together?"
+Behavioral	How should objects communicate	"How should objects interact?"
+
+Creational → How are objects created?
+Structural → How are objects connected and organized?
+Behavioral → How do objects communicate and interact?
+
+1. Creational Design Patterns
+
+Focus: Object Creation
+
+These patterns hide or simplify object creation.
+
+Without them, you might write:
+
+const car = new Car();
+const bike = new Bike();
+const truck = new Truck();
+
+As your project grows, object creation becomes complicated.
+
+Creational patterns answer:
+
+"What's the best way to create this object?"
+
+Examples:
+
+Singleton
+Factory Method
+Abstract Factory
+Builder
+Prototype
+Restaurant Example
+
+Instead of customers cooking food,
+
+Chef creates the food.
+
+Customer doesn't know how it is made.
+
+Customer
+    |
+    v
+ Chef -----> Pizza
+      -----> Burger
+      -----> Pasta
+
+The chef is like a Factory.
+
+When to use Creational?
+object creation is complex
+object creation should be centralized
+hide new
+reuse existing objects
+only one object should exist (Singleton)
+2. Structural Design Patterns
+
+Focus: Object Structure
+
+Objects already exist.
+
+Now the question becomes:
+
+"How do I connect them together?"
+
+Think of LEGO.
+
+You already have blocks.
+
+Structural patterns tell you how to combine them.
+
+Examples
+
+Adapter
+Decorator
+Composite
+Facade
+Proxy
+Bridge
+Flyweight
+
+Restaurant Example
+
+Kitchen
+
+Waiter
+
+Customer
+
+Chef
+
+These all already exist.
+
+Now we organize communication.
+
+Customer
+    |
+ Waiter
+    |
+ Kitchen
+
+Waiter is a Facade.
+
+Customer doesn't directly talk to every chef.
+
+Another example
+
+Phone charger
+
+Indian socket
+
+US charger
+
+Need Adapter.
+
+US Charger ---> Adapter ---> Indian Socket
+
+Objects exist.
+
+Need compatibility.
+
+When to use Structural?
+
+combine objects
+simplify interfaces
+wrap objects
+reuse existing classes
+make incompatible classes work together
+3. Behavioral Design Patterns
+
+Focus: Communication
+
+Objects already exist.
+
+Structure already exists.
+
+Now the question is:
+
+"How should they behave?"
+
+Examples
+
+Observer
+Strategy
+State
+Mediator
+Command
+Chain of Responsibility
+Iterator
+Template Method
+Visitor
+Memento
+Interpreter

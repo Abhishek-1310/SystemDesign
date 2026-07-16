@@ -1,0 +1,31 @@
+1. Bridge Pattern (Structural)
+
+Bridge Pattern separates an abstraction from its implementation so that both can vary independently.
+Simple Definition
+Instead of tightly coupling two dimensions of a class, Bridge connects them using composition.
+One-liner:
+Bridge separates "what an object does" from "how it does it."
+
+2. Visitor Pattern (Behavioral)
+Visitor Pattern lets you add new operations to a group of objects without modifying their classes.
+Simple Definition
+Move operations outside the objects into a separate Visitor class, allowing new behaviors to be added without changing existing classes.
+One-liner:
+Visitor adds new functionality to existing objects without modifying them.
+
+3. Chain of Responsibility Pattern (Behavioral)
+Chain of Responsibility Pattern passes a request through a chain of handlers until one of them processes it.
+Simple Definition
+Instead of one object handling every request, multiple objects get a chance to handle it in sequence.
+One-liner:
+A request moves through a chain until an appropriate handler handles it.
+
+Easy Memory Trick
+Pattern	Remember
+Bridge	Separate abstraction from implementation
+Visitor	Add new operations without changing existing classes
+Chain of Responsibility	Pass the request until someone handles it
+In one sentence:
+Bridge → Separate.
+Visitor → Add operations.
+Chain of Responsibility → Pass requests.

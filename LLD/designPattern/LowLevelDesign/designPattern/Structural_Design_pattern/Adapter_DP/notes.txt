@@ -1,0 +1,50 @@
+Adapter Pattern
+
+The Adapter Pattern is a structural design pattern that allows objects with incompatible interfaces to work together.
+Problem Statement
+Question:- Imagine you are working on an e-commerce application that needs to send email notifications to customers. Currently, you are 
+using your own in-house EmailNotificationService, but now you want to integrate a popular third-party email service like SendGrid. However, the interface for your in-house system and the SendGrid service are incompatible.
+Let's see how the Adapter Pattern can solve this problem
+
+
+
+Adapter Pattern
+Definition
+Adapter Pattern allows two incompatible interfaces to work together by converting one interface into another that the client expects.
+Or simply:
+The Adapter acts as a translator between two incompatible classes.
+
+Suppose your e-commerce application already has an email service.
+emailService.sendEmail(to, message);
+Now your company decides to use SendGrid.
+But SendGrid's API looks like this:
+
+Your application expects: sendEmail(to, message)
+But SendGrid provides: send(options)
+
+The interfaces don't match.
+Without an Adapter, you'll have to modify your application everywhere.
+Instead, create an Adapter that translates one interface into the other.
+
+Advantages
+Makes incompatible classes work together.
+Reuses existing code without modification.
+Reduces changes in client code.
+Follows the Open/Closed Principle.
+Makes replacing third-party libraries easier.
+
+Disadvantages
+Introduces an extra layer (Adapter class).
+Can increase the number of classes.
+Too many adapters can make the design harder to follow.
+
+: Adapter Pattern
+Problem: When two systems or components have incompatible interfaces, they cannot work together directly.
+Solution: The Adapter Pattern bridges the gap by converting the interface of one class into another that the client expects.
+Real-world analogy:
+
+A power adapter that allows a device with a US power plug to fit and work with a European power socket
+: Adapter Pattern Benefits
+Reusability: You can reuse existing code even when its interface is not compatible with the current system.
+Flexibility: It helps integrate classes from different libraries or systems that were not designed to work together.
+Decoupling: The Adapter decouples the client from the specific implementation of the Adaptee.

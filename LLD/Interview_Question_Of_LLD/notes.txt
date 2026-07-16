@@ -1,0 +1,269 @@
+How to approch question.
+
+Step 1: Read the Requirements
+
+Read the question and highlight nouns and verbs.
+
+Nouns (Objects)
+Passenger
+Driver
+Ride
+Vehicle
+Car
+Bike
+Fare
+Notification
+Location
+=> These usually become classes.
+
+Verbs (Behaviors)
+Request Ride
+Match Driver
+Calculate Fare
+Notify Users
+Complete Ride
+=> These become methods/services.
+
+Step 2: Divide the System
+Instead of thinking about classes immediately, divide the application into modules.
+
+Ride Sharing App
+├── User Management
+│      Passenger
+│      Driver
+│
+├── Vehicle
+│      Car
+│      Bike
+│
+├── Ride
+│      Ride Status
+│
+├── Fare Calculation
+│
+├── Ride Matching
+│
+└── Notification
+Now the problem looks much smaller.
+
+
+Step 3: Find Design Patterns
+
+Whenever reading the requirements, ask:
+
+Is there multiple algorithms?
+
+Example:
+
+Standard Fare
+Shared Fare
+Luxury Fare
+Different algorithms
+→ Strategy Pattern
+
+Another example
+
+Car
+Bike
+Luxury Car
+Future Vehicle
+Different object types → Factory (optional)
+
+or
+
+Simple inheritance
+Another
+Passenger should get notified.
+Driver should get notified.
+One event
+Multiple listeners → Observer Pattern
+
+Another
+
+Passenger
+Driver
+Ride
+all communicate together
+Instead of everyone talking directly
+Use → Mediator Pattern (RideManager)
+
+
+Step 4: Find Services
+Don't put everything inside Ride.
+Create separate services.
+
+Example
+RideMatchingService
+Only finds nearest driver
+
+FareCalculator
+Only calculates fare
+
+NotificationService
+Only sends notifications.
+
+RideService
+Creates ride
+Starts ride
+Ends ride
+Now each class has one responsibility.  SRP ✔
+
+
+Step 5: Find Interfaces
+Whenever there can be multiple implementations...
+Create an interface.
+
+Example
+=> Fare
+FareStrategy
+
+=> Implementations
+StandardFare
+LuxuryFare
+SharedFare
+
+=> Vehicle
+Vehicle
+
+=> Implementations
+Car
+Bike
+LuxuryCar
+
+=> Notification
+Observer
+
+=> Implementations
+Passenger
+Driver
+
+
+Step 6: Draw Rough Class Diagram
+Just rough.
+
+             Vehicle
+                ▲
+        ┌───────┴────────┐
+      Car              Bike
+
+
+          FareStrategy
+               ▲
+      ┌────────┼─────────┐
+ Standard   Shared   Luxury
+
+
+Passenger ---- Ride ---- Driver
+                  |
+          RideMatchingService
+                  |
+          FareStrategy
+                  |
+      NotificationService
+
+No coding yet.
+
+
+Step 7: Decide Relationships
+
+Ask yourself
+
+Has-A?
+Ride has Passenger
+Ride has Driver
+Ride has Vehicle
+Ride has FareStrategy
+Composition/Aggregation
+
+Is-A?
+Car is a Vehicle
+Bike is a Vehicle
+LuxuryFare is FareStrategy
+Inheritance
+
+
+Step 8: Think About Flow
+Before coding, write the flow.
+Passenger requests ride
+↓
+RideService
+↓
+RideMatchingService
+↓
+Find nearest driver
+↓
+Create Ride
+↓
+Notify passenger
+↓
+Notify driver
+↓
+Ride starts
+↓
+Ride completes
+↓
+Calculate fare
+↓
+Notify everyone
+↓
+Driver available again
+Now coding becomes easy.
+
+
+Step 9: Identify SOLID
+
+Before writing code verify SOLID.
+
+S
+Ride only stores ride.
+FareCalculator only calculates fare.
+Notification only sends notifications.
+
+O
+Want Electric Scooter?
+Add new class.
+No old code changes.
+
+L
+Car can replace Vehicle.
+Bike can replace Vehicle.
+
+I
+Small interfaces.
+Don't create
+VehicleInterface
+drive()
+calculateFare()
+notify()
+Instead
+Vehicle
+FareStrategy
+Observer
+
+D
+Ride depends on
+FareStrategy
+not
+StandardFare
+
+
+step:- 10 do coding
+
+
+Complete Thinking Process (Interview Cheat Sheet)
+
+Whenever you get an LLD problem:
+Read requirements carefully.
+Identify entities (classes).
+Identify actions (methods/services).
+Divide into modules.
+Look for places where design patterns fit:
+Multiple algorithms → Strategy
+Multiple object types → Factory (optional) or inheritance
+One-to-many notifications → Observer
+Complex communication → Mediator
+Create interfaces wherever multiple implementations are expected.
+Separate responsibilities into services (SRP).
+Draw a rough class diagram.
+Define the execution flow.
+Start coding from models → interfaces → implementations → services → main program.

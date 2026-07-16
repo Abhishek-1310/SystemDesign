@@ -1,0 +1,48 @@
+The Mediator Pattern defines an object that encapsulates how a group of objects interact, reducing direct communication between them.
+Simple words:
+Instead of objects talking to each other directly, they communicate through a mediator.
+
+We want to build a chat system with multiple participants where each user can send messages to all other users. If 
+users send messages to each other directly, the complexity increases as more users are added. Each user must know about every
+other user, creating a complex web of communication and dependencies.
+
+A simple way to remember it is:
+
+Observer → One object notifies many objects.
+Mediator → Many objects communicate through one central object.
+Mediator Pattern - Simple Definition
+
+
+ Real-Life Analogy
+
+Think about an airport control tower.
+
+Imagine three airplanes.
+
+✈ Plane A
+
+✈ Plane B
+
+✈ Plane C
+
+Without a control tower, every plane has to communicate with every other plane.
+
+A <-------> B
+ \         /
+  \       /
+   \     /
+      C
+
+As planes increase, communication becomes a mess.
+[11-07-2026 12:37 AM] Abhishek Kumar √∆Dπ: Instead, all planes talk only to the control tower.
+
+        Control Tower
+          /   |   \
+         /    |    \
+        A     B     C
+
+Planes don't know about each other.
+
+They only know the control tower.
+
+That's the Mediator Pattern.

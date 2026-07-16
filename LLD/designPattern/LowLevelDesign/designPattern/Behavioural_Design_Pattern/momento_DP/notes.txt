@@ -1,0 +1,67 @@
+Memento Pattern
+
+Problem: How to provide undo/redo functionality or state restoration without exposing the object's internal state and
+ breaking encapsulation.
+
+Solution: The Memento Pattern captures the internal state of an object in a memento, allowing the object to restore its state 
+later on without revealing internal details.
+
+Real-world analogy
+Example:
+Imagine you're playing a game. Before fighting a boss, you save the game. If you lose, you restore from the save point.
+This immediately tells you why the pattern exists.
+
+real_world_analogy
+q) A text editor where the user can undo changes, such as text addition, d or formatting. The editor stores snapshots of
+ its state (text content) after each change, enabling the user to revert to previous states.
+
+ Initial
+""
+
+Type "Hello"
+
+Editor
+"Hello"
+
+Type " World"
+
+Editor
+"Hello World"
+
+Undo
+
+Editor
+"Hello"
+
+
+mememto:- 
+
+                    +----------------------+
+                    |      Memento         |
+                    +----------------------+
+                    | - text: String       |
+                    +----------------------+
+                    | + getText()          |
+                    +----------------------+
+          |                   ▲
+          |                   |
+          |      creates      | restores
+          |                   |
++----------------------+      |      +----------------------+
+|      TextEditor      |------+----->|      History         |
++----------------------+             +----------------------+
+| - text: String       |             | - history: Memento[] |
++----------------------+             +----------------------+
+| + write(str)         |             | + save(memento)      |
+| + createMemento()    |             | + undo()             |
+| + restore(memento)   |             +----------------------+
+| + show()             |
+
+TextEditor to mememto (dependency relation)
+TextEditor to history (has many (aggregation))
+
+orinator create mememto object it has internal state that need to save cakertake just store mememto for later use
+
+
+notes:- A potential drawback of the Memento pattern is high memory usage if many states of an object are stored. This 
+can be particularly problematic for applications that need to keep track of a large number of states over time.
