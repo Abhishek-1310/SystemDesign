@@ -1,0 +1,273 @@
+For example:
+Ride ❌
+startRide()
+completeRide()
+calculateFare()
+findNearestDriver()
+notifyPassenger()
+
+Too many responsibilities.
+
+Instead:
+
+Ride
+---------
+startRide()
+completeRide()
+
+RideMatchingService
+-------------------
+findNearestDriver()
+
+FareCalculator
+--------------
+calculateFare()
+
+NotificationService
+-------------------
+notify()
+Now every class has one job.
+
+
+
+
+LLD Interview Blueprint (5-10 minutes)
+Step 1: Read Requirements (1 minute)
+
+Ask yourself:
+What is the system supposed to do?
+
+For Ride Sharing, I immediately write:
+Ride Request
+Driver Matching
+Fare Calculation
+Notification
+Ride Management
+These become modules.
+Step 2: Find Entities (1 minute)
+
+Circle all the nouns.
+Passenger
+Driver
+Ride
+Vehicle
+Location
+These usually become classes.
+Rule: Nouns → Classes
+
+Step 3: Find Behaviors (30 sec)
+Underline verbs.
+
+Request Ride
+Find Driver
+Calculate Fare
+Notify
+Complete Ride
+These become methods or services.
+Rule: Verbs → Methods/Services
+
+Step 4: Find Change Points (1 minute)
+This is the most important step.
+Ask:
+What can change in the future?
+Example:
+Standard Fare
+Luxury Fare
+Shared Fare
+Changes?
+Yes.
+↓
+Strategy Pattern
+
+Example
+Car
+Bike
+Scooter
+Auto
+Truck
+Changes?
+Yes.
+↓
+Factory/Inheritance
+
+Example
+Passenger notified
+Driver notified
+One event
+Many listeners
+↓
+Observer
+
+Rule: If something varies, don't hardcode it.
+
+Step 5: Divide Responsibilities (SRP) (2 minutes)
+Ask:
+Who should do what?
+Instead of
+Ride
+
+doing everything,
+split responsibilities.
+Ride
+stores data.
+RideMatchingService
+finds drivers.
+FareCalculator
+calculates fare.
+NotificationService
+sends notifications.
+Rule: One class = One responsibility.
+
+Step 6: Find Interfaces (1 minute)
+
+Ask:
+Can there be multiple implementations?
+If yes,
+make an interface.
+Example
+Vehicle
+↓
+Car
+
+Bike
+FareStrategy
+
+↓
+Standard
+Luxury
+Shared
+Observer
+↓
+Passenger
+Driver
+Rule: Multiple implementations → Interface
+
+
+Step 7: Find Relationships (1 minute)
+Ask only two questions.
+IS-A?
+Car IS-A Vehicle
+
+Inheritance.
+HAS-A?
+Ride HAS-A Passenger
+Ride HAS-A Driver
+Ride HAS-A Vehicle
+Composition/Aggregation.
+Step 8: Decide the Flow (1 minute)
+Before coding,
+
+write the flow.
+Passenger
+↓
+RideService
+↓
+RideMatchingService
+↓
+Driver
+↓
+Create Ride
+↓
+Notify
+↓
+Complete Ride
+↓
+Calculate Fare
+If the flow is clear,
+coding becomes easy.
+Step 9: Identify SOLID (30 sec)
+
+Quick checklist:
+✅ One responsibility?
+✅ Open for extension?
+✅ Uses interfaces?
+✅ Depends on abstraction?
+
+If yes,
+
+you're done.
+Step 10: Start Coding
+Always in this order:
+
+Enums
+↓
+Interfaces
+↓
+Models
+↓
+Services
+↓
+Main
+Never randomly. My Mental Checklist (30 Seconds)
+
+Whenever I see an LLD question, I literally ask these 8 questions:
+
+1. What are the entities?
+
+2. What actions are performed?
+
+3. What changes frequently?
+
+4. Which design pattern fits?
+
+5. Which classes need interfaces?
+
+6. What should each class be responsible for?
+
+7. How does the request flow?
+
+8. Then start coding.
+Apply It to Ride Sharing
+Entities
+---------
+Passenger
+Driver
+Ride
+Vehicle
+Location
+
+Services
+---------
+RideService
+RideMatchingService
+NotificationService
+FareCalculator
+
+Interfaces
+----------
+Vehicle
+FareStrategy
+Observer
+
+Patterns
+---------
+Strategy
+Observer
+Factory
+Mediator
+
+Flow
+----
+Passenger
+   ↓
+RideService
+   ↓
+RideMatchingService
+   ↓
+Create Ride
+   ↓
+Notify
+   ↓
+Complete Ride
+   ↓
+Fare Calculation
+⭐ The golden rule that separates good LLD candidates from average ones
+Don't think in terms of classes first. Think in terms of responsibilities.
+
+Bad approach:
+"I'll make a Ride class and put everything in it."
+
+Good approach:
+"What is the responsibility of each part of the system?"
+Once the responsibilities are clear, the classes, interfaces, SOLID principles, and design patterns almost reveal themselves naturally.
+This is the same process you can use for Parking Lot, Food Delivery, Hotel Booking, Library Management, Movie Ticket Booking, and Ride Sharing. Once you practice it a few times, you'll be able to sketch an LLD design in 5–10 minutes before writing any code.
