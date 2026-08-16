@@ -1,0 +1,47 @@
+question:- Your Splitwise LLD question
+
+Design a simplified Splitwise-like expense-sharing system.
+
+The system should support:
+
+Multiple users.
+Users can create a group.
+A user can add an expense.
+An expense has:
+Amount
+Paid by one user
+Multiple users who participated
+Support these split types:
+Equal split
+Exact amount split
+Percentage split
+The system should calculate how much each user owes or is owed.
+Users should be able to view their current balances.
+Users should be able to settle a debt.
+
+
+
+User
+ └── id, name
+
+Group
+ ├── users[]
+ ├── expenses[]
+ └── balances[]
+
+Expense
+ ├── id
+ ├── amount
+ ├── paidBy        ← one User
+ ├── participants[]← multiple Users
+ └── splitStrategy
+
+Balance
+ ├── fromUser
+ ├── toUser
+ └── amount
+
+SplitStrategy
+ ├── EqualSplit
+ ├── ExactSplit
+ └── PercentageSplit

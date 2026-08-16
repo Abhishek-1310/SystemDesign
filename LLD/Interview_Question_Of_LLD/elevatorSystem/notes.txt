@@ -1,0 +1,59 @@
+The building has:
+
+Multiple floors: 1 → N
+Multiple elevators
+Each elevator can move up or down
+Each elevator has buttons for every floor
+Users can request an elevator from any floor
+Users can select a destination floor after entering the elevator
+Functional requirements
+
+Your system should support:
+
+A user can request an elevator from a floor.
+Example: Floor 5, wants to go UP.
+The system should select an appropriate elevator to serve the request.
+The elevator should:
+Move between floors
+Open/close doors
+Stop at requested floors
+Maintain its current floor and direction
+Once inside the elevator, a user can select a destination floor.
+Multiple elevator requests can exist simultaneously.
+The system should handle multiple elevators.
+
+
+Building
+    - floors[]
+    - elevators[]
+
+Floor
+    - id
+
+User
+    - name
+    - currentFloor
+    - destinationFloor
+
+ElevatorSystem / ElevatorController
+    - elevators[]
+    - assignelevator()
+    -changeDirection()
+    -decidenextfloor()
+
+Elevator
+    - id
+    - currentFloor
+    - direction
+    - status
+    -uprequest[], -downrequest[]
+    - move()
+    - addRequest()
+    - openDoor()
+    - closeDoor()
+
+    1. Find elevators moving in the requested direction
+2. Check whether they are on the correct side of the requester
+3. Among them, choose nearest
+4. If none exists, consider IDLE elevators
+5. If still none, consider opposite-direction elevators

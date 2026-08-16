@@ -68,3 +68,109 @@ const exitGate =
     new ExitGate(1, payment);
 
 // See? Factory creates. Strategy executes. Very common interview combination.
+
+
+// observer
+
+class Observer {
+    update(ticket) {
+        throw new Error("Implement in subclass");
+    }
+}
+
+module.exports = Observer;
+
+const Observer = require("./observer");
+
+class DisplayBoard extends Observer {
+
+    update(ticket) {
+        console.log("Display Board Updated");
+    }
+
+}
+
+module.exports = DisplayBoard;
+
+const Observer = require("./observer");
+
+class SmsService extends Observer {
+
+    update(ticket) {
+        console.log("SMS Sent");
+    }
+
+}
+
+module.exports = SmsService;
+
+class ParkingNotifier {
+
+    constructor() {
+        this.observers = [];
+    }
+
+    addObserver(observer) {
+        this.observers.push(observer);
+    }
+
+    notify(ticket) {
+        for (const observer of this.observers) {
+            observer.update(ticket);
+        }
+    }
+
+}
+
+module.exports = ParkingNotifier;
+
+
+class EntryGate {
+
+    constructor(gateId, parkingLot, notifier) {
+        this.gateId = gateId;
+        this.parkingLot = parkingLot;
+        this.notifier = notifier;
+    }
+
+    parkVehicle(vehicle) {
+
+        const spot = this.parkingLot.findAvailableSpot(vehicle);
+
+        if (!spot) {
+            throw new Error("Parking Full");
+        }
+
+        spot.parkVehicle(vehicle);
+
+        const ticket = this.generateTicket(vehicle, spot);
+
+        this.notifier.notify(ticket);
+
+        return ticket;
+    }
+
+}
+
+const notifier = new ParkingNotifier();
+
+notifier.addObserver(new DisplayBoard());
+notifier.addObserver(new SmsService());
+
+const entryGate = new EntryGate(
+    1,
+    parkingLot,
+    notifier
+);
+
+// Vehicle Parked
+//        │
+//        ▼
+// EntryGate
+//        │
+//        ▼
+// ParkingNotifier
+//        │
+//  ┌─────┴──────────┐
+//  ▼                ▼
+// DisplayBoard   SmsService

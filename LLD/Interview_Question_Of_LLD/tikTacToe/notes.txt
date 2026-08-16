@@ -1,0 +1,50 @@
+LLD Question: Design Tic-Tac-Toe
+
+Design a Tic-Tac-Toe game that can be played by two players.
+
+Initial Requirements
+The game is played on a 3 × 3 board.
+There are 2 players.
+Each player has a symbol:
+Player 1 → X
+Player 2 → O
+Players take turns making moves.
+A player can place their symbol only on an empty cell.
+After every move, the system should check whether the player has won.
+A player wins if they have 3 symbols in a row:
+Horizontally
+Vertically
+Diagonally
+If all cells are filled and nobody wins, the game is a draw.
+Once the game is over, no more moves should be allowed.
+For V1, support only one game at a time and a fixed 3 × 3 board.
+
+
+
+sol:-
+Board
+- cells
+- size
+- isValidMove()
+- makeMove()
+- isFull()
+
+Player
+- id
+- name
+- symbol
+
+Cell
+- position
+- status
+- symbol
+- changeStatus()
+
+Game
+- board
+- players
+- turn
+- gameStatus
+- makeMove()
+- checkWinner()
+- changeTurn()

@@ -1,0 +1,23 @@
+🚗 LLD Interview: Car Rental System
+Problem Statement
+
+Design a Car Rental System similar to Enterprise or Zoomcar.
+
+A customer should be able to search for available cars, reserve a car for a specific period, pick up the car, return it, and pay the rental amount.
+
+Initial requirements
+
+The system should support:
+
+Multiple rental stores/branches.
+Each store can have multiple vehicles.
+A vehicle can be available, reserved, rented, or under maintenance.
+A customer can search for available vehicles at a store.
+A customer can reserve a vehicle for a specific pickup and return date/time.
+A reserved vehicle cannot be reserved by another customer for an overlapping period.
+The customer can pick up the reserved vehicle.
+The customer can return the vehicle.
+Rental cost is calculated based on the rental duration and the vehicle's price per day.
+The customer can pay the final bill.
+Support Cash, Card, and UPI payments.
+A reservation can be confirmed, cancelled, or completed.

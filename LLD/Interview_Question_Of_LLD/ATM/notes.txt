@@ -1,0 +1,73 @@
+question:- 🏧 ATM — LLD Interview Question
+
+You are asked to design an ATM system using Object-Oriented Design.
+
+Requirements
+
+Design an ATM that supports:
+
+Insert card
+Enter PIN
+Check account balance
+Withdraw cash
+Deposit cash
+Eject card
+ATM behavior
+ATM should have different states such as:
+No card inserted
+Card inserted
+PIN verified
+Transaction in progress
+A user cannot perform transactions before entering the correct PIN.
+After 3 incorrect PIN attempts, the card should be blocked.
+User cannot withdraw more than:
+Their account balance
+The cash available in the ATM
+ATM should dispense cash using available denominations, e.g. ₹500, ₹200, ₹100.
+After completing a transaction, the user should be able to perform another transaction or eject the card.
+ATM should not accept transactions if it is out of cash.
+
+
+ATM
+
+insertCard()
+enterPin()
+withdraw()
+deposit()
+checkBalance()
+ejectCard()
+
+Card
+
+cardNumber
+PIN
+blocked/unblocked
+
+Account
+
+accountNumber
+balance
+withdraw()
+deposit()
+
+Transaction
+
+transactionId
+transactionType
+amount
+status
+
+Then there is one more important question:
+How will ATM know what it is currently allowed to do?
+
+For example:
+
+No Card
+   ↓ insertCard()
+Card Inserted
+   ↓ enterPin()
+Authenticated
+   ↓ withdraw()
+Transaction
+
+This is where State Pattern becomes useful.

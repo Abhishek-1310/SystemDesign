@@ -1,0 +1,125 @@
+state interface
+class VehicleState {
+    reserve(vehicle) {
+        throw new Error("Method not implemented");
+    }
+
+    rent(vehicle) {
+        throw new Error("Method not implemented");
+    }
+
+    makeAvailable(vehicle) {
+        throw new Error("Method not implemented");
+    }
+}
+
+module.exports = VehicleState;
+
+
+
+
+avialable state
+const VehicleState = require("./vehicleState");
+const ReservedState = require("./reservedState");
+
+class AvailableState extends VehicleState {
+    reserve(vehicle) {
+        console.log("Vehicle reserved");
+        vehicle.setState(new ReservedState());
+    }
+
+    rent(vehicle) {
+        throw new Error("Vehicle must be reserved before renting");
+    }
+
+    makeAvailable(vehicle) {
+        console.log("Vehicle is already available");
+    }
+}
+
+module.exports = AvailableState;
+
+
+
+
+
+resrversed state
+const VehicleState = require("./vehicleState");
+const RentedState = require("./rentedState");
+const AvailableState = require("./availableState");
+
+class ReservedState extends VehicleState {
+    reserve(vehicle) {
+        throw new Error("Vehicle is already reserved");
+    }
+
+    rent(vehicle) {
+        console.log("Vehicle rented");
+        vehicle.setState(new RentedState());
+    }
+
+    makeAvailable(vehicle) {
+        console.log("Reservation cancelled");
+        vehicle.setState(new AvailableState());
+    }
+}
+
+module.exports = ReservedState;
+
+
+
+
+rented state
+const VehicleState = require("./vehicleState");
+const AvailableState = require("./availableState");
+
+class RentedState extends VehicleState {
+    reserve(vehicle) {
+        throw new Error("Rented vehicle cannot be reserved");
+    }
+
+    rent(vehicle) {
+        throw new Error("Vehicle is already rented");
+    }
+
+    makeAvailable(vehicle) {
+        console.log("Vehicle returned");
+        vehicle.setState(new AvailableState());
+    }
+}
+
+module.exports = RentedState;
+
+
+
+
+vehicle
+const AvailableState = require("./availableState");
+
+class Vehicle {
+    constructor(id, carType, pricePerDay) {
+        this.id = id;
+        this.carType = carType;
+        this.pricePerDay = pricePerDay;
+
+        this.state = new AvailableState();
+    }
+
+    setState(state) {
+        this.state = state;
+    }
+
+    reserve() {
+        this.state.reserve(this);
+    }
+
+    rent() {
+        this.state.rent(this);
+    }
+
+    makeAvailable() {
+        this.state.makeAvailable(this);
+    }
+}
+
+module.exports = Vehicle;

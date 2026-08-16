@@ -1,0 +1,115 @@
+// It would internally do something like:
+
+let nearestStore = null;
+let minDistance = Infinity;
+
+for (const store of stores) {
+    const distance = customerLocation.distanceTo(store.location);
+
+    if (distance < minDistance) {
+        minDistance = distance;
+        nearestStore = store;
+    }
+}
+
+// Notice that:
+
+// Location → calculates one distance.
+// StoreService (or Store) → finds the nearest by comparing many distances.
+
+
+
+
+
+Vehicle
+
+// KNOW:
+// - id
+// - carType
+// - carNumber
+// - pricePerDay
+// - status
+
+// DO:
+// - reserve()
+// - rent()
+// - returnVehicle()
+// - markForMaintenance()
+
+// CHANGE:
+// - status
+
+Reservation
+
+// KNOW:
+// - id
+// - customer
+// - vehicle
+// - pickupDate
+// - returnDate
+// - status
+
+// DO:
+// - confirm()
+// - cancel()
+// - complete()
+
+// CHANGE:
+// - status
+
+Bill
+
+// KNOW:
+// - reservation
+// - amount
+
+// DO:
+// - calculateAmount()
+
+// CHANGE:
+// - amount (when calculated)
+
+
+Store
+ └── vehicles[]
+
+Customer
+ └── customer information
+
+Vehicle
+ ├── type
+ ├── number
+ ├── pricePerDay
+ └── status
+
+Reservation
+ ├── customer
+ ├── vehicle
+ ├── pickupDate
+ ├── returnDate
+ └── status
+
+Bill
+ ├── reservation
+ └── amount
+
+Payment
+ ├── bill
+ └── paymentMethod
+
+
+ Customer
+   ↓
+Store.findAvailableVehicles()
+   ↓
+Vehicle
+   ↓
+Reservation
+   ↓
+Pickup
+   ↓
+Return
+   ↓
+Bill.calculateAmount()
+   ↓
+Payment.pay()

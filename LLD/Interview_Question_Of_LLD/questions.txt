@@ -1,0 +1,21 @@
+LLD Problem	                Main Pattern	        What you'll practice
+1. Ride Sharing App	         Strategy + Observer	Matching, fare strategies, notifications
+2. Vending Machine	         State ⭐	             State transitions, invalid operations
+3. Tic-Tac-Toe	             Strategy	             Pluggable winning/drawing strategies
+4. Logger System	         Chain of Responsibility ⭐	Request flowing through handlers
+5. ATM	                     State ⭐	             ATM state + transaction flow
+6. Elevator System	         Strategy	             Scheduling algorithms
+7. Pub-Sub / Notification System	Observer ⭐	             One-to-many notifications
+8. Coffee Machine	         Factory + Strategy	             Object creation + behavior
+9. Splitwise	             Strategy	             Equal/exact/percentage split
+10. File System	            Composite ⭐	             Tree structure + recursive operations
+11. Online Shopping Cart	Strategy + Observer	             Pricing + events
+12. Parking Lot	            Strategy + Observer	             Already completed ✅
+13. Car Rental	            Strategy + optional State	 Already completed ✅
+
+
+solve
+#	Problem	Main pattern	Why
+1	🥤 Vending Machine	State ⭐	Best way to master State
+2	📝 Logger System	Chain of Responsibility ⭐	Very common pattern + clean object collaboration
+3	📁 File System	Composite ⭐	Teaches tree-based LLD
