@@ -111,3 +111,48 @@ class Elevator {
 }
 
 module.exports = Elevator;
+
+
+
+
+const Direction = require('./enum/direction');
+
+class RequestManager {
+    constructor() {
+        this.upRequest = [];
+        this.downRequest = [];
+    }
+
+    addExternalRequest(floor, direction) {
+        if (direction === Direction.UP && !this.upRequest.includes(floor)) {
+            this.upRequest.push(floor);
+            this.upRequest.sort((a, b) => a - b);
+        } else if (direction === Direction.DOWN && !this.downRequest.includes(floor)) {
+            this.downRequest.push(floor);
+            this.downRequest.sort((a, b) => b - a);
+        }
+    }
+
+    addInternalRequest(floor, currFloor) {
+        if (floor > currFloor && !this.upRequest.includes(floor)) {
+            this.upRequest.push(floor);
+            this.upRequest.sort((a, b) => a - b);
+        } else if (floor < currFloor && !this.downRequest.includes(floor)) {
+            this.downRequest.push(floor);
+            this.downRequest.sort((a, b) => b - a);
+        }
+    }
+
+    getNextTarget(currFloor, currentDirection) {
+        if (currentDirection === Direction.UP || currentDirection === Direction.IDLE) {
+            if (this.upRequest.length > 0) return this.upRequest.shift();
+            if (this.downRequest.length > 0) return this.downRequest.shift();
+        } else if (currentDirection === Direction.DOWN) {
+            if (this.downRequest.length > 0) return this.downRequest.shift();
+            if (this.upRequest.length > 0) return this.upRequest.shift();
+        }
+        return null;
+    }
+}
+
+module.exports = RequestManager;
